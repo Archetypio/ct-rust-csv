@@ -6,9 +6,9 @@ use std::ffi::OsString;
 use std::fs::File;
 use std::process;
 
-use std::collections::HashMap;
+use std::collections::BTreeMap;
 
-type Record = HashMap<String, String>;
+type Record = BTreeMap<String, String>;
 
 fn run() -> Result<(), Box<dyn Error>> {
     let file_path = get_first_arg()?;
@@ -21,8 +21,8 @@ fn run() -> Result<(), Box<dyn Error>> {
         let record: Record = result?;
         //println!("{:?}", record);
 
-        let j = serde_json::to_string(&record).unwrap();
-        println!("{}", j);
+        let j = serde_json::to_string_pretty(&record).unwrap();
+        println!("{},", j);
     }
     Ok(())
 }
