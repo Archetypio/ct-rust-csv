@@ -10,6 +10,13 @@ use std::collections::BTreeMap;
 
 type Record = BTreeMap<String, String>;
 
+fn populate_record(record: &mut Record) -> Result<Record, Box<dyn Error>> {
+    record
+        .entry(String::from("Inclusion Criteria"))
+        .or_insert(String::from("Criterion"));
+    Ok(record.clone())
+}
+
 fn run() -> Result<(), Box<dyn Error>> {
     let file_path = get_first_arg()?;
     let file = File::open(file_path)?;
@@ -18,10 +25,10 @@ fn run() -> Result<(), Box<dyn Error>> {
         .from_reader(file);
 
     for result in rdr.deserialize() {
-        let record: Record = result?;
-        //println!("{:?}", record);
+        let mut record: Record = result?;
+        let completed_record: Record = populate_record(&mut record).unwrap();
 
-        let j = serde_json::to_string_pretty(&record).unwrap();
+        let j = serde_json::to_string_pretty(&completed_record).unwrap();
         println!("{},", j);
     }
     Ok(())
