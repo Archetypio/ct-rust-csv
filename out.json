@@ -1,40 +1,50 @@
 {
-    "acronym": "REBECCA II",
-    "age": "18 Years and older   (Adult, Older Adult)",
-    "completion_date": "May 31, 2021",
-    "conditions": "Breast Cancer",
-    "enrollment": "324",
-    "exclusion_criteria": [
-        {
-            "hinting": "",
-            "text": "criterion string"
-        },
-        {
-            "hinting": "hinting string",
-            "text": "criterion string"
+    "children": {
+        "NCT03254875": {
+            "children": {},
+            "data": {
+                "Acronym": "REBECCA II",
+                "Age": "18 Years and older   (Adult, Older Adult)",
+                "Completion Date": "May 31, 2021",
+                "Conditions": "Breast Cancer",
+                "Enrollment": "324",
+                "First Posted": "August 21, 2017",
+                "Funded Bys": "Other",
+                "Gender": "Female",
+                "Interventions": "Behavioral: Individually tailored nurse navigation",
+                "Last Update Posted": "May 6, 2020",
+                "Locations": "Rigshospitalet, Copenhagen, Denmark",
+                "NCT Number": "NCT03254875",
+                "Other IDs": "REBECCA II",
+                "Outcome Measures": "Distress|Depression|Anxiety|Health related quality of life summary index|Breast cancer related quality of life summary index|Functional related quality of life summary index|Physical health related quality of life|Social health related quality of life|Emotional health related quality of life|Self-efficacy|Fear of recurrence|Pain in the breast surgery area (side of chest, armpit or arm)|Neuropathy in the breast surgery area (side of chest, armpit or arm)|Sleep quality|Cognitive function - Perceived cognitive impairments|Cognitive function- Perceived cognitive impairments|Cognitive function - Impact of Perceived cognitive impairments on quality of life|Cognitive function - Perceived cognitive abilities|Need for support|Health care costs|Acceptability",
+                "Phases": "Not Applicable",
+                "Primary Completion Date": "May 31, 2021",
+                "Rank": "1",
+                "Results First Posted": "",
+                "Sponsor/Collaborators": "Danish Cancer Society|Rigshospitalet, Denmark|Copenhagen University Hospital at Herlev",
+                "Start Date": "August 15, 2017",
+                "Status": "Active, not recruiting",
+                "Study Designs": "Allocation: Randomized|Intervention Model: Parallel Assignment|Masking: Single (Outcomes Assessor)|Primary Purpose: Supportive Care",
+                "Study Documents": "",
+                "Study Results": "No Results Available",
+                "Study Type": "Interventional",
+                "Title": "Rehabilitation After Breast Cancer",
+                "URL": "https://ClinicalTrials.gov/show/NCT03254875"
+            },
+            "inclusion_criteria": [
+                {
+                    "text": "Text",
+                    "hinting": ""
+                },
+                {
+                    "text": "Text2",
+                    "hinting": ""
+                }
+            ],
+            "exclusion_criteria": []
         }
-    ],
-    "first_posted": "August 21, 2017",
-    "funded_bys": "Other",
-    "gender": "Female",
+    },
+    "data": {},
     "inclusion_criteria": [],
-    "interventions": "Behavioral: Individually tailored nurse navigation",
-    "last_update_posted": "May 6, 2020",
-    "locations": "Rigshospitalet, Copenhagen, Denmark",
-    "nct_nunber": "NCT03254875",
-    "other_ids": "REBECCA II",
-    "outcome_measures": "Distress|Depression|Anxiety|Health related quality of life summary index|Breast cancer related quality of life summary index|Functional related quality of life summary index|Physical health related quality of life|Social health related quality of life|Emotional health related quality of life|Self-efficacy|Fear of recurrence|Pain in the breast surgery area (side of chest, armpit or arm)|Neuropathy in the breast surgery area (side of chest, armpit or arm)|Sleep quality|Cognitive function - Perceived cognitive impairments|Cognitive function- Perceived cognitive impairments|Cognitive function - Impact of Perceived cognitive impairments on quality of life|Cognitive function - Perceived cognitive abilities|Need for support|Health care costs|Acceptability",
-    "phases": "Not Applicable",
-    "primary_completion_date": "May 31, 2021",
-    "rank": "1",
-    "results_first_posted": "",
-    "sponsor_collaborators": "Danish Cancer Society|Rigshospitalet, Denmark|Copenhagen University Hospital at Herlev",
-    "start_date": "August 15, 2017",
-    "status": "Active, not recruiting",
-    "study_designs": "Allocation: Randomized|Intervention Model: Parallel Assignment|Masking: Single (Outcomes Assessor)|Primary Purpose: Supportive Care",
-    "study_documents": "",
-    "study_results": "No Results Available",
-    "study_type": "Interventional",
-    "title": "Rehabilitation After Breast Cancer",
-    "url": "https://ClinicalTrials.gov/show/NCT03254875"
-}
+    "exclusion_criteria": []
+},
