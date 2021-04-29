@@ -1,13 +1,13 @@
 extern crate csv;
 
-use serde::{Deserialize, Serialize};
+use serde::Serialize;
 use std::env;
 use std::error::Error;
 use std::ffi::OsString;
 use std::fs::File;
 use std::process;
 
-use serde_json::{json, Value};
+//use serde_json::{json, Value};
 use std::collections::BTreeMap;
 
 type Record = BTreeMap<String, String>;
@@ -43,6 +43,22 @@ impl Database {
     }
 }
 
+fn populate_criteria(node: &mut Database, url: &String) {
+    println!("Scraping: {}", url);
+
+    let criterion: Criterion = Criterion {
+        text: String::from("Text1"),
+        ..Criterion::default()
+    };
+    node.inclusion_criteria.push(criterion);
+
+    let criterion2: Criterion = Criterion {
+        text: String::from("Text2"),
+        ..Criterion::default()
+    };
+    node.inclusion_criteria.push(criterion2);
+}
+
 fn populate_record(record: &mut Record) -> Result<String, Box<dyn Error>> {
     let mut db = Database {
         children: BTreeMap::new(),
@@ -56,17 +72,8 @@ fn populate_record(record: &mut Record) -> Result<String, Box<dyn Error>> {
     let node = db.insert_path(&subkeys);
     node.data = record.clone();
 
-    let criterion: Criterion = Criterion {
-        text: String::from("Text"),
-        ..Criterion::default()
-    };
-    node.inclusion_criteria.push(criterion);
-
-    let criterion2: Criterion = Criterion {
-        text: String::from("Text2"),
-        ..Criterion::default()
-    };
-    node.inclusion_criteria.push(criterion2);
+    let url = record.get("URL").unwrap();
+    populate_criteria(node, url);
 
     let db_json = serde_json::to_string(&db).unwrap();
     Ok(db_json.clone())
