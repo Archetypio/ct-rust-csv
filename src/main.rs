@@ -72,7 +72,8 @@ fn populate_record(record: &mut Record) -> Result<String, Box<dyn Error>> {
     Ok(db_json.clone())
 }
 
-fn run() -> Result<(), Box<dyn Error>> {
+#[tokio::main]
+async fn run() -> Result<(), Box<dyn Error>> {
     let file_path = get_first_arg()?;
     let file = File::open(file_path)?;
     let mut rdr = csv::ReaderBuilder::new()
