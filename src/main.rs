@@ -5,6 +5,8 @@ use std::env;
 use std::error::Error;
 use std::ffi::OsString;
 use std::fs::File;
+use std::fs::OpenOptions;
+use std::io::{BufWriter, Write};
 use std::process;
 
 //use serde_json::{json, Value};
@@ -59,14 +61,7 @@ fn populate_criteria(node: &mut Database, url: &String) {
     node.inclusion_criteria.push(criterion2);
 }
 
-fn populate_record(record: &mut Record) -> Result<String, Box<dyn Error>> {
-    let mut db = Database {
-        children: BTreeMap::new(),
-        data: Record::new(),
-        inclusion_criteria: Vec::new(),
-        exclusion_criteria: Vec::new(),
-    };
-
+fn populate_record(db: &mut Database, record: &mut Record) -> Result<String, Box<dyn Error>> {
     let nct_trial = record.get("NCT Number").unwrap().as_str();
     let subkeys = vec![nct_trial];
     let node = db.insert_path(&subkeys);
@@ -81,18 +76,37 @@ fn populate_record(record: &mut Record) -> Result<String, Box<dyn Error>> {
 
 #[tokio::main]
 async fn run() -> Result<(), Box<dyn Error>> {
-    let file_path = get_first_arg()?;
-    let file = File::open(file_path)?;
+    let in_file_path = get_first_arg()?;
+    let in_file = File::open(in_file_path)?;
     let mut rdr = csv::ReaderBuilder::new()
         .has_headers(true)
-        .from_reader(file);
+        .from_reader(in_file);
+
+    let out_file = OpenOptions::new()
+        .append(false)
+        .write(true)
+        .create(true)
+        .open("clinical_trials.json")
+        .expect("Unable to open file.");
+    let mut out_file = BufWriter::new(out_file);
+
+    let mut db = Database {
+        children: BTreeMap::new(),
+        data: Record::new(),
+        inclusion_criteria: Vec::new(),
+        exclusion_criteria: Vec::new(),
+    };
+
+    let mut completed_record: String = String::new();
 
     for result in rdr.deserialize() {
         let mut record: Record = result?;
-        let completed_record: String = populate_record(&mut record).unwrap();
-
-        println!("{},", completed_record);
+        completed_record = populate_record(&mut db, &mut record).unwrap();
     }
+
+    out_file
+        .write_all(completed_record.as_bytes())
+        .expect("Unable to write to file.");
     Ok(())
 }
 
